@@ -28,3 +28,81 @@ body{
     background-color: #fff;
     padding: 50px;
 }
+
+USER.TS
+
+import conectarBD from './db/db';
+import { UserModel } from './models/user';
+import { Enum_Rol } from './models/enums';
+
+const main = async()=>{
+    await conectarBD();
+
+
+// CRUD USUARIOS
+
+
+//CREAR USUARIO
+
+    UserModel.create({
+        nombre:"Alejandro",
+        apellido:"Zapata",
+        identificacion:"10203090",
+        rol:Enum_Rol.estudiante,
+        correo:"alejo@gmail.com",
+              
+        
+    })
+    .then((u) =>{
+        console.log('usuario creado', u);
+
+    })
+    .catch((e)=>{
+        console.error('Error creando el usuario',e);
+    }); 
+
+    ///OBTENER LOS USUARIOS
+
+    // await UserModel.find().then((u)=>{
+    //     console.log('usuarios',u);
+    // }).catch(e=>{
+    //     console.error('error obteniendo los usuarios',e);
+    // })  
+
+    //OBTENER UN SOLO USUARIO
+
+    // await UserModel.findOne({identificacion:"10203050"})
+    // .then((u)=>{
+    //     console.log('usuario encontrado',u);
+    // })
+    // .catch((e)=>{
+    //     console.error(e);
+    // });
+
+    //EDITAR UN USUARIO
+
+    //  await UserModel.findOneAndUpdate(
+    //     {correo:'miguel@hotmail.com'},
+    //     {
+    //     nombre:'juan',
+    // }).then((u)=>{
+    //     console.log('usuario actualizado',u);
+
+    // }).catch(e=>{
+    //     console.error('error actualizando',e)
+    // });
+ 
+    //ELIMINAR USUARIO
+    
+    // await UserModel.findOneAndDelete({correo:'miguel@hotmail.com'})
+    // .then((u)=>{
+    //     console.log('usuario eliminado',u);
+    // })
+    // .catch((e)=>{
+    //     console.error(e);
+    // });
+};
+
+main();
+
+
